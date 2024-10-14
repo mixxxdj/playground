@@ -1,20 +1,22 @@
 name: Sync Branches
 on:
   push:
-    - "2.4"
-    - "2.5"
+    branches:
+      - "2.4"
+      - "2.5"
+  workflow_dispatch:
 
 jobs:
   sync-branches:
     strategy:
       matrix:
         include:
-          - from_branch: 2.4
-            to_branch: 2.5
-          - from_branch: 2.5
-            to_branch: main
+          - from_branch: "2.4"
+            to_branch: "2.5"
+          - from_branch: "2.5"
+            to_branch: "main"
     runs-on: ubuntu-latest
-    if: ${{ github.ref_name == matrix.to_branch }}
+    if: ${{ github.event_name == "workflow_dispatch" || github.ref_name == matrix.to_branch }}
     steps:
       - name: Merge ${{ matrix.from_branch }} into ${{ matrix.to_branch }}
         uses: tretuna/sync-branches@1.4.0
