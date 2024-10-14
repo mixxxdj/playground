@@ -16,9 +16,9 @@ jobs:
           - from_branch: "2.5"
             to_branch: "main"
     runs-on: ubuntu-latest
-    if: github.event_name == 'workflow_dispatch' || github.ref_name == matrix.to_branch
     steps:
       - name: Merge ${{ matrix.from_branch }} into ${{ matrix.to_branch }}
+        if: github.event_name == 'workflow_dispatch' || github.ref_name == matrix.to_branch
         uses: tretuna/sync-branches@1.4.0
         with:
           GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
