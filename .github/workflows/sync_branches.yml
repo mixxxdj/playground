@@ -23,7 +23,7 @@ jobs:
         with:
           GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
           FROM_BRANCH: ${{ matrix.from_branch }}
-          TO_BRANCH: ${{ matrix.from_branch }}
+          TO_BRANCH: ${{ matrix.to_branch }}
           CONTENT_COMPARISON: true  # Prevent empty PRs
           PULL_REQUEST_TITLE: Merge changes from `${{ matrix.from_branch }}` into `${{ matrix.to_branch }}`
           PULL_REQUEST_BODY: |
